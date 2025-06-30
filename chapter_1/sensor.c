@@ -29,6 +29,23 @@ int Sensor_getValue(const Sensor *const me) {
 	return me->value;
 }
 
+/* polymorphism the hard way */
+int acquireValue(Sensor *me) {
+	int *r, *w; /* read and write addresses */
+	int j;
+
+	switch(me->whatKindOfInterface) {
+		case MEMORY_MAPPED:
+			//Code to interact with a memory mapped inteface here
+			break;
+		case PORT_MAPPED:
+			//Code to interface with a port mapped interface here
+			break;
+	}
+
+	return me->value;
+} 
+
 Sensor *Sensor_Create(void) {
 	Sensor *me = (Sensor *)malloc(sizeof(Sensor));
 	if (me != NULL) {
